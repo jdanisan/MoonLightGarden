@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "59099098731",
+    "firebase_url": "https://moonlightgarden-e5cb4-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "moonlightgarden-e5cb4",
     "storage_bucket": "moonlightgarden-e5cb4.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.moonlightgarden"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "59099098731-asat33ed8tfeb4142mnh9jsqria9rhhb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moonlightgarden",
+            "certificate_hash": "ff9688ec94ded8067ca4c7f6b17fbdef4ba11e36"
+          }
+        },
+        {
+          "client_id": "59099098731-72m4drk8tlc2kurh79luhcj13hbciin7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBQJaP6hzeCPf_EdS33F1FT5FqlNwVvXUE"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59099098731-72m4drk8tlc2kurh79luhcj13hbciin7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

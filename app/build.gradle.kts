@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.github.imagekit-developer.imagekit-android:imagekit-android")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

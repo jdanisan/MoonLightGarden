@@ -249,86 +249,6 @@
                         </LinearLayout>
 
                     </GridLayout>
-
-                    <!--<LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/circle_bg"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/product_icon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Title" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/circle_bg"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/product_icon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Title" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/circle_bg"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/product_icon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Title" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/circle_bg"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/product_icon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Title" />
-                    </LinearLayout>-->
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -426,10 +346,7 @@
                         android:gravity="center"
                         android:text="Title" />
                 </LinearLayout>
-
-
             </LinearLayout>
-
         </LinearLayout>
     </RelativeLayout>
 
@@ -443,5 +360,6 @@
         app:itemIconTint="@drawable/bottom_navigation_view_selector"
         app:itemTextColor="@drawable/bottom_navigation_view_selector"
         android:background="?android:attr/windowBackground"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

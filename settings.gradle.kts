@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MoonlightGarden"
 include(":app")
-include(":app:java")
+//include(":app:java")

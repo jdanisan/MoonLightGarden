@@ -27,6 +27,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
+allprojects {
+    repositories {
+        maven { url = uri("https://jitpack.io") }
+    }
+}
 
 dependencies {
 
