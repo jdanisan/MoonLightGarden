@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "118251574248",
+    "project_id": "moonlight-garden-cd22b",
+    "storage_bucket": "moonlight-garden-cd22b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118251574248:android:b48342834042b34d830a5d",
+        "android_client_info": {
+          "package_name": "com.example.moonlightgarden"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-XPGTp9kva_1m3uNUHeXnXPMaASfCV-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
