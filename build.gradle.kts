@@ -61,6 +61,9 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
     //implementation ("com.github.imagekit-developer.imagekit-android:imagekit-android")
     //implementation ("com.github.tehras:charts:0.2.4-alpha")
 

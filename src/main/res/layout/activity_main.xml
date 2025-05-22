@@ -1,7 +1,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/main">
 
     <!-- Scrollable content -->
     <RelativeLayout
@@ -83,7 +84,10 @@
             <ViewFlipper
                 android:id="@+id/v_flipper"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp">
+
+
+            </ViewFlipper>
 
 
             <!-- Sección de productos populares -->
@@ -117,10 +121,10 @@
                         android:id="@+id/gridLayout"
                         android:layout_width="380dp"
                         android:layout_height="150dp"
-                        android:rowCount="2"
+                        android:alignmentMode="alignMargins"
                         android:columnCount="4"
                         android:padding="16dp"
-                        android:alignmentMode="alignMargins"
+                        android:rowCount="2"
                         android:useDefaultMargins="true">
 
                         <!-- Botón 1 -->
@@ -128,13 +132,13 @@
                             android:id="@+id/btn1_pp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
+                            android:layout_columnWeight="1"
                             android:clickable="true"
                             android:focusable="true"
-                            android:onClick="onButton1Click">
+                            android:gravity="center"
+                            android:onClick="onButton1Click"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/iv_pp1"
@@ -142,7 +146,7 @@
                                 android:layout_height="80dp"
                                 android:padding="16dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/anuncion1" />
+                                android:src="@drawable/patata" />
 
                             <!-- En la siguiente parte habrá que poner los iconos finales-->
 
@@ -151,7 +155,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Opción 1"
+                                android:text="Patata"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -160,13 +164,13 @@
                             android:id="@+id/btn2_pp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
+                            android:layout_columnWeight="1"
                             android:clickable="true"
                             android:focusable="true"
-                            android:onClick="onButton2Click">
+                            android:gravity="center"
+                            android:onClick="onButton2Click"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/iv_pp2"
@@ -174,7 +178,7 @@
                                 android:layout_height="80dp"
                                 android:padding="16dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/anuncio2" />
+                                android:src="@drawable/acelga" />
                             <!--android:src="@drawable/ic_example2"-->
 
                             <TextView
@@ -182,7 +186,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Opción 2"
+                                android:text="Acelga"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -191,13 +195,13 @@
                             android:id="@+id/btn3_pp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
+                            android:layout_columnWeight="1"
                             android:clickable="true"
                             android:focusable="true"
-                            android:onClick="onButton3Click">
+                            android:gravity="center"
+                            android:onClick="onButton3Click"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/iv_pp3"
@@ -205,7 +209,7 @@
                                 android:layout_height="80dp"
                                 android:padding="8dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/anuncio3" />
+                                android:src="@drawable/cebolla" />
                             <!--android:src="@drawable/ic_example2"-->
 
                             <TextView
@@ -213,7 +217,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Opción 3"
+                                android:text="Cebolla"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -222,13 +226,13 @@
                             android:id="@+id/btn4_pp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
                             android:layout_rowWeight="1"
-                            android:orientation="vertical"
-                            android:gravity="center"
+                            android:layout_columnWeight="1"
                             android:clickable="true"
                             android:focusable="true"
-                            android:onClick="onButton4Click">
+                            android:gravity="center"
+                            android:onClick="onButton4Click"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/iv_pp4"
@@ -236,7 +240,7 @@
                                 android:layout_height="80dp"
                                 android:padding="8dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/anuncio4" />
+                                android:src="@drawable/lechuga_romana" />
                             <!--android:src="@drawable/ic_example2"-->
 
                             <TextView
@@ -244,9 +248,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="Opción 4"
+                                android:text="Lechuga Romana"
                                 android:textSize="16sp" />
                         </LinearLayout>
+
+
 
                     </GridLayout>
                 </LinearLayout>
@@ -277,7 +283,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/anuncio5" />
+                        android:src="@drawable/judia_verde" />
                     <!--android:src="@drawable/product_icon"-->
 
                     <TextView
@@ -297,7 +303,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/anuncio3" />
+                        android:src="@drawable/calabacin" />
                     <!--android:src="@drawable/product_icon"-->
 
                     <TextView
@@ -317,7 +323,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/anuncio2" />
+                        android:src="@drawable/pimiento_verde" />
                     <!--android:src="@drawable/product_icon"-->
 
                     <TextView
@@ -337,7 +343,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/anuncio4" />
+                        android:src="@drawable/naranja_navel" />
                     <!--android:src="@drawable/product_icon"-->
 
                     <TextView
@@ -352,12 +358,13 @@
 
     <!-- Contenedor de fragmentos -->
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="840dp"
+        app:layout_constraintTop_toBottomOf="@id/bottom_nav"
+        android:layout_marginBottom="56dp" />
 
-    <!-- Bottom Navigation -->
+    <!-- Barra de navegación inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
@@ -366,7 +373,6 @@
         app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@drawable/bottom_navigation_view_selector"
         app:itemTextColor="@drawable/bottom_navigation_view_selector"
-        android:background="?android:attr/windowBackground"/>
-
+        android:background="?android:attr/windowBackground" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
