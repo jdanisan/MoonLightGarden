@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.moonlightgarden.API.WeatherApiService;
 import com.example.moonlightgarden.R;
 
 import retrofit2.Retrofit;
@@ -50,13 +51,22 @@ public class Calendar_moon extends Fragment {
 
         WeatherApiService service = retrofit.create(WeatherApiService.class);
 
-        String apiKey = BuildConfig.WEATHER_API_KEY;
+        String apiKey = "6fb0876a5d8144f6b30100754252205";
         String location = "Mexico";
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
         Call<AstronomyResponse> call = service.getAstronomy(apiKey, location, date);
 
-        call.enqueue(new Callback<AstronomyResponse>() {
+        call.enqueue(new Callback<>() {
+            /**
+             * Invoked for a received HTTP response.
+             *
+             * <p>Note: An HTTP response may still indicate an application-level failure such as a 404 or 500.
+             * Call {@link Response#isSuccessful()} to determine if the response indicates success.
+             *
+             * @param call
+             * @param response
+             */
             @Override
             public void onResponse(@NonNull Call<AstronomyResponse> call, @NonNull Response<AstronomyResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -67,24 +77,22 @@ public class Calendar_moon extends Fragment {
                 }
             }
 
+            /**
+             * Invoked when a network exception occurred talking to the server or when an unexpected exception
+             * occurred creating the request or processing the response.
+             *
+             * @param call
+             * @param t
+             */
             @Override
             public void onFailure(@NonNull Call<AstronomyResponse> call, @NonNull Throwable t) {
                 moonPhaseText.setText("Fallo de conexión");
             }
+
+
+
+
         });
-    }
-}
-// Debajo del final de Calendar_moon pero dentro del mismo archivo
-class AstronomyResponse {
-    public Astronomy astronomy;
-
-    public static class Astronomy {
-        public Astro astro;
-    }
-
-    public static class Astro {
-        public String moon_phase;
-        public String moon_illumination;
     }
 }
 
