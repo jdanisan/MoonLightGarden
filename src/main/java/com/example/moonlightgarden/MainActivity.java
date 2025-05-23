@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import com.squareup.picasso.Picasso;
 
 import com.example.moonlightgarden.fragment.viewsFragment.Calendar_moon;
 import com.example.moonlightgarden.fragment.viewsFragment.ViewFragment;
@@ -77,22 +78,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Banner de imágenes
-        int[] images = {
-                R.drawable.anuncion1,
-                R.drawable.anuncio2,
-                R.drawable.anuncio3,
-                R.drawable.anuncio4,
-                R.drawable.anuncio5
+        // Inicializar el ViewFlipper
+        v_flipper = findViewById(R.id.v_flipper);
+
+        // Lista de URLs de imágenes
+        String[] imageUrls = {
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio2.jpeg?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio3.jpg?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio4.jpg?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio5.png?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio_elefantito.jpeg?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio_fresas.png?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio_lechuga_r.png?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncio_naranja.png?raw=true",
+                "https://github.com/jdanisan/ImgBannerTFG/blob/master/anuncion1.jpg?raw=true"
         };
 
-        v_flipper = findViewById(R.id.v_flipper);
-        for (int image : images) {
-            flipperImages(image);
-        }
+        // Llamar al método para agregar imágenes al ViewFlipper
+        flipperImagesFromUrls(imageUrls);
 
     }
 
+    /**
+     * Método para cargar imágenes desde URLs y agregarlas al ViewFlipper.
+     *
+     * @param imageUrls Lista de URLs de imágenes.
+     */
+    private void flipperImagesFromUrls(String[] imageUrls) {
+        for (String url : imageUrls) {
+            // Crear un ImageView dinámicamente
+            ImageView imageView = new ImageView(this);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+            // Cargar la imagen desde la URL usando Picasso
+            Picasso.get()
+                    .load(url)
+                    .into(imageView);
+
+            // Agregar el ImageView al ViewFlipper
+            v_flipper.addView(imageView);
+        }
+
+        // Configurar el ViewFlipper
+        v_flipper.setFlipInterval(3000); // Cambiar cada 3 segundos
+        v_flipper.setAutoStart(true); // Iniciar automáticamente
+        v_flipper.setInAnimation(this, android.R.anim.slide_in_left); // Animación de entrada
+        v_flipper.setOutAnimation(this, android.R.anim.slide_out_right); // Animación de salida
+    }
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
