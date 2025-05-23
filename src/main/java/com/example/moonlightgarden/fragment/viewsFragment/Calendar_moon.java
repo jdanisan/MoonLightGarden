@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import java.util.Locale;
 public class Calendar_moon extends Fragment {
 
     private TextView moonPhaseText;
+    private ImageView imageViewMoonPhase;
 
     public Calendar_moon() {
         // Constructor vacío
@@ -37,6 +39,7 @@ public class Calendar_moon extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.calendar_moon, container, false);
         moonPhaseText = view.findViewById(R.id.moonPhaseText);
+        imageViewMoonPhase = view.findViewById(R.id.imageViewMoonPhase);
 
         fetchMoonPhase();
 
@@ -52,7 +55,7 @@ public class Calendar_moon extends Fragment {
         WeatherApiService service = retrofit.create(WeatherApiService.class);
 
         String apiKey = "6fb0876a5d8144f6b30100754252205";
-        String location = "Mexico";
+        String location = "España";
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
         Call<AstronomyResponse> call = service.getAstronomy(apiKey, location, date);
@@ -87,12 +90,43 @@ public class Calendar_moon extends Fragment {
             @Override
             public void onFailure(@NonNull Call<AstronomyResponse> call, @NonNull Throwable t) {
                 moonPhaseText.setText("Fallo de conexión");
+                imageViewMoonPhase.setImageResource(R.drawable.ic_moon); // Imagen por defecto
             }
-
-
-
-
         });
+    }
+    private void setMoonImage(String phase) {
+        int resId;
+        switch (phase) {
+            case "new moon":
+                resId = R.drawable.new_moon;
+                break;
+            case "waxing crescent":
+                resId = R.drawable.crecient_gibos_moon;
+                break;
+            case "first quarter":
+                resId = R.drawable.first_cuart_moon;
+                break;
+            case "waxing gibbous":
+                resId = R.drawable.waxing_gibbous_moon;
+                break;
+            case "full moon":
+                resId = R.drawable.full_moon;
+                break;
+            case "waning gibbous":
+                resId = R.drawable.menguant_gibos_moon;
+                break;
+            case "last quarter":
+                resId = R.drawable.last_cuart_moon;
+                break;
+            case "waning crescent":
+                resId = R.drawable.crecient_moon;
+                break;
+            default:
+                resId = R.drawable.ic_moon; // Imagen por defecto
+                break;
+        }
+
+        imageViewMoonPhase.setImageResource(resId);
     }
 }
 
