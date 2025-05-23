@@ -1,11 +1,14 @@
 package com.example.moonlightgarden.fragment.viewsFragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,13 +16,14 @@ import androidx.fragment.app.Fragment;
 import com.example.moonlightgarden.API.WeatherApiService;
 import com.example.moonlightgarden.R;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,6 +31,8 @@ public class Calendar_moon extends Fragment {
 
     private TextView moonPhaseText;
     private ImageView imageViewMoonPhase;
+    private TextView selectDateText;
+    private Calendar selectedDate;
 
     public Calendar_moon() {
         // Constructor vacío
@@ -40,12 +46,51 @@ public class Calendar_moon extends Fragment {
         View view = inflater.inflate(R.layout.calendar_moon, container, false);
         moonPhaseText = view.findViewById(R.id.moonPhaseText);
         imageViewMoonPhase = view.findViewById(R.id.imageViewMoonPhase);
+        selectDateText = view.findViewById(R.id.selectDateText);
 
+        // Inicializar la fecha seleccionada con la fecha actual
+        selectedDate = Calendar.getInstance();
+        updateSelectedDateText();
+
+        // Configurar el clic en el texto para seleccionar una fecha
+        selectDateText.setOnClickListener(v -> showDatePickerDialog());
+
+        // Obtener la fase lunar para la fecha actual
         fetchMoonPhase();
 
         return view;
     }
 
+    /**
+     * Muestra un DatePickerDialog para seleccionar una fecha.
+     */
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                requireContext(),
+                (DatePicker view, int year, int month, int dayOfMonth) -> {
+                    // Actualizar la fecha seleccionada
+                    selectedDate.set(year, month, dayOfMonth);
+                    updateSelectedDateText();
+                    fetchMoonPhase(); // Actualizar la fase lunar para la nueva fecha
+                },
+                selectedDate.get(Calendar.YEAR),
+                selectedDate.get(Calendar.MONTH),
+                selectedDate.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    /**
+     * Actualiza el texto que muestra la fecha seleccionada.
+     */
+    private void updateSelectedDateText() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        selectDateText.setText("Fecha seleccionada: " + dateFormat.format(selectedDate.getTime()));
+    }
+
+    /**
+     * Obtiene la fase lunar para la fecha seleccionada.
+     */
     private void fetchMoonPhase() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.weatherapi.com/")
@@ -56,37 +101,22 @@ public class Calendar_moon extends Fragment {
 
         String apiKey = "6fb0876a5d8144f6b30100754252205";
         String location = "España";
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.getTime());
 
         Call<AstronomyResponse> call = service.getAstronomy(apiKey, location, date);
 
         call.enqueue(new Callback<>() {
-            /**
-             * Invoked for a received HTTP response.
-             *
-             * <p>Note: An HTTP response may still indicate an application-level failure such as a 404 or 500.
-             * Call {@link Response#isSuccessful()} to determine if the response indicates success.
-             *
-             * @param call
-             * @param response
-             */
             @Override
             public void onResponse(@NonNull Call<AstronomyResponse> call, @NonNull Response<AstronomyResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String moonPhase = response.body().astronomy.astro.moon_phase;
                     moonPhaseText.setText("Fase Lunar: " + moonPhase);
+                    setMoonImage(moonPhase);
                 } else {
                     moonPhaseText.setText("Error obteniendo datos");
                 }
             }
 
-            /**
-             * Invoked when a network exception occurred talking to the server or when an unexpected exception
-             * occurred creating the request or processing the response.
-             *
-             * @param call
-             * @param t
-             */
             @Override
             public void onFailure(@NonNull Call<AstronomyResponse> call, @NonNull Throwable t) {
                 moonPhaseText.setText("Fallo de conexión");
@@ -94,9 +124,15 @@ public class Calendar_moon extends Fragment {
             }
         });
     }
+
+    /**
+     * Actualiza la imagen de la fase lunar según la fase.
+     *
+     * @param phase Fase lunar.
+     */
     private void setMoonImage(String phase) {
         int resId;
-        switch (phase) {
+        switch (phase.toLowerCase(Locale.ROOT)) {
             case "new moon":
                 resId = R.drawable.new_moon;
                 break;
@@ -129,4 +165,3 @@ public class Calendar_moon extends Fragment {
         imageViewMoonPhase.setImageResource(resId);
     }
 }
-
