@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.moonlightgarden.MainActivity;
 import com.example.moonlightgarden.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -64,6 +65,10 @@ public class AuthActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = auth.getCurrentUser();
                                     Toast.makeText(AuthActivity.this, "Bienvenido: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+
                                 } else {
                                     Toast.makeText(AuthActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -114,6 +119,10 @@ public class AuthActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
                             Toast.makeText(AuthActivity.this, "Bienvenido con Google: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AuthActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             Toast.makeText(AuthActivity.this, "Error de autenticación con Google", Toast.LENGTH_SHORT).show();
                         }
