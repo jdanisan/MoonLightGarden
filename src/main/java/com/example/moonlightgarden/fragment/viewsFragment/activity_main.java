@@ -34,9 +34,9 @@ public class activity_main extends Fragment {
         // Aquí podrías agregar imágenes dinámicamente al ViewFlipper
         // ejemplo:
         // viewFlipper.addView(crearImagen(R.drawable.tu_imagen));
-        // viewFlipper.setAutoStart(true);
-        // viewFlipper.setFlipInterval(3000);
-        // viewFlipper.startFlipping();
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(3000);
+         viewFlipper.startFlipping();
         // Lista de URLs de imágenes
         String[] imageUrls = {
                 "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio2.jpeg",

@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.moonlightgarden.*;
 
-import login.AuthActivity;
-
 
 public class ViewFragment extends Fragment {
 

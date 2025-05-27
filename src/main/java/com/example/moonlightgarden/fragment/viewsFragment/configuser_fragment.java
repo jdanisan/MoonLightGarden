@@ -1,5 +1,6 @@
 package com.example.moonlightgarden.fragment.viewsFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,24 +13,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.moonlightgarden.R;
+import login.AuthActivity;// Ensure this matches the actual package
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
-
-
-public class configuser_fragment  extends Fragment {
+public class configuser_fragment extends Fragment {
 
     private Button btnChangePassword;
     private Button btnLogout;
     private BottomNavigationView bottomNavigationView;
 
     public configuser_fragment() {
-        // Constructor vacío requerido
+        // Empty constructor
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Infla el layout para este fragmento
         return inflater.inflate(R.layout.configuser_fragment, container, false);
     }
 
@@ -37,21 +37,19 @@ public class configuser_fragment  extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicialización de vistas
         btnChangePassword = view.findViewById(R.id.btn_change_password);
         btnLogout = view.findViewById(R.id.btn_logout);
         bottomNavigationView = view.findViewById(R.id.bottom_nav);
 
-        // Listener para "Cambiar contraseña"
         btnChangePassword.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Cambiar contraseña", Toast.LENGTH_SHORT).show()
+                Toast.makeText(getContext(), "Change Password", Toast.LENGTH_SHORT).show()
         );
 
-        // Listener para "Cerrar sesión"
-        btnLogout.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show()
-        );
-
-
+        btnLogout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(requireActivity(), AuthActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            requireActivity().startActivity(intent);
+        });
     }
 }
