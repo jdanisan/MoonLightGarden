@@ -49,7 +49,7 @@ public class ViewFragment extends Fragment {
                 layoutId = R.layout.configuser_fragment;
                 break;
             default:
-                layoutId = R.layout.activity_main; // Default layout
+                layoutId = R.layout.home_layout; // Default layout
                 break;
         }
 

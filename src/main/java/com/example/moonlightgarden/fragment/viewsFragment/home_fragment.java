@@ -11,16 +11,16 @@ import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.squareup.picasso.Picasso;
 
 import com.example.moonlightgarden.R;
+import com.squareup.picasso.Picasso;
 
-public class activity_main extends Fragment {
+public class home_fragment extends Fragment {
 
     private ViewFlipper viewFlipper;
 
-    public activity_main() {
-        // Constructor vacío requerido
+    public home_fragment() {
+        // Empty constructor required
     }
 
     @Nullable
@@ -28,16 +28,10 @@ public class activity_main extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_main, container, false);
+        View rootView = inflater.inflate(R.layout.home_layout, container, false);
 
+        // Configure ViewFlipper
         viewFlipper = rootView.findViewById(R.id.v_flipper);
-        // Aquí podrías agregar imágenes dinámicamente al ViewFlipper
-        // ejemplo:
-        // viewFlipper.addView(crearImagen(R.drawable.tu_imagen));
-        viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000);
-         viewFlipper.startFlipping();
-        // Lista de URLs de imágenes
         String[] imageUrls = {
                 "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio2.jpeg",
                 "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio_elefantito.jpeg",
@@ -50,28 +44,29 @@ public class activity_main extends Fragment {
                 "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncion1.jpg"
         };
 
-        // Agregar imágenes al ViewFlipper
         for (String url : imageUrls) {
             ImageView imageView = new ImageView(getContext());
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-            // Cargar la imagen con Picasso
             Picasso.get().load(url).into(imageView);
-
-            // Agregar el ImageView al ViewFlipper
             viewFlipper.addView(imageView);
         }
-
-        // Configurar el ViewFlipper
         viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000); // Cambiar cada 3 segundos
+        viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping();
+
+        // Configure CardView for btn2_pp
+        /*CardView btn2 = rootView.findViewById(R.id.);
+        ImageView imageView = btn2.findViewById(R.id.iv_tomate);
+        TextView nameTextView = btn2.findViewById(R.id.tv_tomate);
+        TextView descriptionTextView = btn2.findViewById(R.id.tv_tomate_description);
+
+        // Set dynamic content for btn2
+        imageView.setImageResource(R.drawable.acelga);
+        nameTextView.setText("Acelga");
+        descriptionTextView.setText("Descripción de la acelga");*/
 
         return rootView;
     }
-
-    // Si vas a usar los botones onClick declarados en XML (como onButton1Click),
-    // también necesitas estos métodos en tu Fragment o Activity:
 
     public void onButton1Click(View view) {
         Toast.makeText(getContext(), "Botón 1 presionado", Toast.LENGTH_SHORT).show();
@@ -88,6 +83,4 @@ public class activity_main extends Fragment {
     public void onButton4Click(View view) {
         Toast.makeText(getContext(), "Botón 4 presionado", Toast.LENGTH_SHORT).show();
     }
-
-
 }
