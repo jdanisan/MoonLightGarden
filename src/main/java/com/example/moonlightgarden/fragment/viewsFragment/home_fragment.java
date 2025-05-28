@@ -43,6 +43,7 @@ public class home_fragment extends Fragment {
                 "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio_naranja.png",
                 "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncion1.jpg"
         };
+        //Se ha agregado el raw delante de las redirecciones para poder acceder a las imágenes desde el repositorio de GitHub.
 
         for (String url : imageUrls) {
             ImageView imageView = new ImageView(getContext());
