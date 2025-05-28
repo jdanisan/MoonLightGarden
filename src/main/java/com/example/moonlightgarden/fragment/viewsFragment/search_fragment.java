@@ -58,9 +58,9 @@ public class search_fragment extends Fragment {
                     TextView desc = cardView.findViewById(R.id.product_description);
                     ImageView image = cardView.findViewById(R.id.product_image);
 
-                    name.setText(item.getName());
-                    desc.setText(item.getDescription());
-                    Picasso.get().load(item.getImageUrl()).into(image);
+                    name.setText(item.getFood_name());
+                    desc.setText(item.getFood_description());
+                    Picasso.get().load(item.getUrl_food_image()).into(image);
 
                     scrollContent.addView(cardView);
                 }

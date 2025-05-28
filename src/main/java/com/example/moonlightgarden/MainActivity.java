@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.example.moonlightgarden.fragment.viewsFragment.Calendar_moon;
 import com.example.moonlightgarden.fragment.viewsFragment.configuser_fragment;
 import com.example.moonlightgarden.fragment.viewsFragment.home_fragment;
@@ -11,6 +12,9 @@ import com.example.moonlightgarden.fragment.viewsFragment.search_fragment;
 import com.example.moonlightgarden.fragment.viewsFragment.statistics_fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.moonlightgarden.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +22,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.default_layout);
+
+
+        Log.d("TAG", "Mi código de base de datos se está ejecutandokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
+        // Log a message to indicate that the database code is running
+        Log.d("TAG", "Mi código de base de datos se está ejecutando");
+
+        // Configurar el idioma globalmente para Firebase
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth.setLanguageCode("es"); // Configura el idioma deseado
 
         // Load the initial fragment
         if (savedInstanceState == null) {
