@@ -30,7 +30,7 @@ public class fragment_login extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false); // Asegúrate de que el nombre coincida
+        return inflater.inflate(R.layout.authactivity, container, false); // Asegúrate de que el nombre coincida
     }
 
     @Override

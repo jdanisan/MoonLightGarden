@@ -20,12 +20,12 @@ public class ViewFragment extends Fragment {
     private static final String ARG_VIEW_TYPE = "view_type";
 
     public static ViewFragment newInstance(String viewType) {
-        ViewFragment fragment = new ViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_VIEW_TYPE, viewType);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    ViewFragment fragment = new ViewFragment();
+    Bundle args = new Bundle();
+    args.putString(ARG_VIEW_TYPE, viewType);
+    fragment.setArguments(args);
+    return fragment;
+}
 
     @Nullable
     @Override
@@ -49,7 +49,7 @@ public class ViewFragment extends Fragment {
                 layoutId = R.layout.configuser_fragment;
                 break;
             default:
-                layoutId = R.layout.activity_main; // Default layout
+                layoutId = R.layout.home_layout; // Default layout
                 break;
         }
 
