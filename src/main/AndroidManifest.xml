@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.moonlightgarden">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" tools:ignore="WrongManifestParent" />
+
 
     <application
         android:allowBackup="true"
@@ -18,27 +20,16 @@
             android:value="${ASTRONOMY_API_KEY}" />
 
         <activity
-            android:name="com.example.moonlightgarden.MainActivity"
+            android:name="login.AuthActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MoonlightGarden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-
-
             </intent-filter>
         </activity>
-        <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:ignore="WrongManifestParent" />-->
-        <uses-permission android:name="android.permission.INTERNET"
-            tools:ignore="WrongManifestParent" />
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:ignore="WrongManifestParent"/>
-
+        <activity android:name="login.RegisterActivity" />
+        <activity android:name="com.example.moonlightgarden.MainActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
     </application>
-
 </manifest>
-
-
-
-
-

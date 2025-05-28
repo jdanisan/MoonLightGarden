@@ -2,23 +2,16 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@drawable/framelayout"
+    android:padding="24dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/appTitle2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="24dp"
-            android:text="MoonLight Garden"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+        android:gravity="center_horizontal"
+        android:fitsSystemWindows="true">
 
         <TextView
             android:id="@+id/appTitle"
@@ -55,8 +48,55 @@
             android:background="@android:drawable/editbox_background_normal"
             android:layout_marginBottom="16dp" />
 
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="************"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:layout_marginBottom="16dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
 
+            <CheckBox
+                android:id="@+id/showPasswordCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver contraseña" />
+
+            <!-- Espaciador flexible -->
+            <!-- View me sirve para ocupar el espacio entre el CheckBox y el TextView -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/createAccountLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crear nuevo usuario"
+                android:textColor="@color/bottom_nv_menu_selected"
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+        <!-- Casilla seleccionable para reCAPTCHA -->
+        <!--<CheckBox
+            android:id="@+id/recaptchaCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verify reCAPTCHA"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />-->
         <Button
             android:id="@+id/emailContinueButton"
             android:layout_width="match_parent"

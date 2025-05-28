@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">MoonlightGarden</string>
-    <string name="default_web_client_id">TU_CLIENT_ID</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">59099098731-asat33ed8tfeb4142mnh9jsqria9rhhb.apps.googleusercontent.com</string>
 
 </resources>

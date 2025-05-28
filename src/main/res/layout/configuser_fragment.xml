@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
 
     <!-- Contenido desplazable -->
     <ScrollView
@@ -46,7 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Helena in Group name"
+                android:text="User Info"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -71,10 +72,11 @@
                     android:text="Nombre" />
 
                 <TextView
+                    android:id="@+id/textViewName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Helena" />
+                    android:text="UserName" />
             </LinearLayout>
 
             <!-- Apellido -->
@@ -91,10 +93,11 @@
                     android:text="Apellido" />
 
                 <TextView
+                    android:id="@+id/textViewSecondName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Rodriguez" />
+                    android:text="UserSecondName" />
             </LinearLayout>
 
             <!-- Fecha de nacimiento -->
@@ -111,10 +114,11 @@
                     android:text="Fecha de Nacimiento" />
 
                 <TextView
+                    android:id="@+id/textViewBirthDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="03/07/2000" />
+                    android:text="BirthDate" />
             </LinearLayout>
 
             <!-- Contraseña -->
@@ -130,11 +134,13 @@
                     android:layout_weight="1"
                     android:text="Contraseña" />
 
-                <TextView
-                    android:layout_width="0dp"
+               <EditText
+                   android:id="@+id/editTextPassword"
+                   android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="***********" />
+                    android:hint="***********"
+                    android:inputType="textPassword" />
             </LinearLayout>
 
             <!-- Correo electrónico -->
@@ -151,10 +157,11 @@
                     android:text="Correo electrónico" />
 
                 <TextView
+                    android:id="@+id/textViewEmail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="helena@gmail.com" />
+                    android:text="example@gmail.com" />
             </LinearLayout>
         </LinearLayout>
 
@@ -206,5 +213,6 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@drawable/bottom_navigation_view_selector"
-        app:itemTextColor="@drawable/bottom_navigation_view_selector" />
+        app:itemTextColor="@drawable/bottom_navigation_view_selector"
+        android:visibility="invisible"/>
 </LinearLayout>

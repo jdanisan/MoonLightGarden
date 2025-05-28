@@ -15,6 +15,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        buildConfigField("String", "WEATHER_API_KEY", "\"6fb0876a5d8144f6b30100754252205\"")
+        manifestPlaceholders.put("ASTRONOMY_API_KEY", "6fb0876a5d8144f6b30100754252205")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,6 +39,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -57,12 +60,18 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.google.firebase:firebase-auth:22.1.2")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.google.firebase:firebase-auth")
+    implementation ("com.google.android.gms:play-services-safetynet:18.0.1") // o Play Integrity API
+
+
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation ("com.google.firebase:firebase-database:21.0.0")
 
     //implementation ("com.github.imagekit-developer.imagekit-android:imagekit-android")
     //implementation ("com.github.tehras:charts:0.2.4-alpha")

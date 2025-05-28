@@ -85,8 +85,8 @@
 
                     <GridLayout
                         android:id="@+id/gridLayout"
-                        android:layout_width="380dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:alignmentMode="alignMargins"
                         android:columnCount="4"
                         android:padding="16dp"
@@ -269,171 +269,175 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!-- Producto Recomendado 1-->
-                <androidx.cardview.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:clickable="true"
-                    android:focusable="true">
 
-                    <FrameLayout
-                        android:layout_width="90dp"
-                        android:layout_height="100dp">
 
-                        <!-- Image fills the entire card -->
-                        <ImageView
-                            android:id="@+id/iv_r_judia"
+                    <!-- Producto Recomendado 1-->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp">
+
+                        <FrameLayout
                             android:layout_width="90dp"
-                            android:layout_height="100dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/judia_verde" />
+                            android:layout_height="100dp">
 
-                        <!-- Text overlay on the image -->
-                        <TextView
-                            android:id="@+id/tv_r_judia"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Judia Verde"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:background="@android:color/darker_gray"
-                            android:padding="8dp"
-                            android:alpha="0.7" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
+                            <!-- Image fills the entire card -->
+                            <ImageView
+                                android:id="@+id/iv_r_judia"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/judia_verde" />
 
-                <!-- Producto Recomendado 2-->
-                <androidx.cardview.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:clickable="true"
-                    android:focusable="true">
+                            <!-- Text overlay on the image -->
+                            <TextView
+                                android:id="@+id/tv_r_judia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:alpha="0.7"
+                                android:background="@android:color/darker_gray"
+                                android:padding="8dp"
+                                android:text="Judia Verde"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    <FrameLayout
-                        android:layout_width="90dp"
-                        android:layout_height="100dp">
+                    <!-- Producto Recomendado 2-->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp">
 
-                        <!-- Image fills the entire card -->
-                        <ImageView
-                            android:id="@+id/iv_r_calabacin"
+                        <FrameLayout
                             android:layout_width="90dp"
-                            android:layout_height="100dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/calabacin" />
+                            android:layout_height="100dp">
 
-                        <!-- Text overlay on the image -->
-                        <TextView
-                            android:id="@+id/tv_r_calabacin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Calabacín"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:background="@android:color/darker_gray"
-                            android:padding="8dp"
-                            android:alpha="0.7" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
+                            <!-- Image fills the entire card -->
+                            <ImageView
+                                android:id="@+id/iv_r_calabacin"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/calabacin" />
 
-                <!-- Producto Recomendado 3-->
-                <androidx.cardview.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:clickable="true"
-                    android:focusable="true">
+                            <!-- Text overlay on the image -->
+                            <TextView
+                                android:id="@+id/tv_r_calabacin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:alpha="0.7"
+                                android:background="@android:color/darker_gray"
+                                android:padding="8dp"
+                                android:text="Calabacín"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    <FrameLayout
-                        android:layout_width="90dp"
-                        android:layout_height="100dp">
+                    <!-- Producto Recomendado 3-->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp">
 
-                        <!-- Image fills the entire card -->
-                        <ImageView
-                            android:id="@+id/iv_r_pimiento"
+                        <FrameLayout
                             android:layout_width="90dp"
-                            android:layout_height="100dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/pimiento_verde" />
+                            android:layout_height="100dp">
 
-                        <!-- Text overlay on the image -->
-                        <TextView
-                            android:id="@+id/tv_r_pimiento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Pimiento Verde"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:background="@android:color/darker_gray"
-                            android:padding="8dp"
-                            android:alpha="0.7" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
+                            <!-- Image fills the entire card -->
+                            <ImageView
+                                android:id="@+id/iv_r_pimiento"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/pimiento_verde" />
 
-                <!-- Producto Recomendado 4-->
-                <androidx.cardview.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
-                    android:clickable="true"
-                    android:focusable="true">
+                            <!-- Text overlay on the image -->
+                            <TextView
+                                android:id="@+id/tv_r_pimiento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:alpha="0.7"
+                                android:background="@android:color/darker_gray"
+                                android:padding="8dp"
+                                android:text="Pimiento Verde"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    <FrameLayout
-                        android:layout_width="90dp"
-                        android:layout_height="100dp">
+                    <!-- Producto Recomendado 4-->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp">
 
-                        <!-- Image fills the entire card -->
-                        <ImageView
-                            android:id="@+id/iv_r_naranja"
+                        <FrameLayout
                             android:layout_width="90dp"
-                            android:layout_height="100dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/naranja_navel" />
+                            android:layout_height="100dp">
 
-                        <!-- Text overlay on the image -->
-                        <TextView
-                            android:id="@+id/tv_r_naranja"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Judia Verde"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:background="@android:color/darker_gray"
-                            android:padding="8dp"
-                            android:alpha="0.7" />
-                    </FrameLayout>
-                </androidx.cardview.widget.CardView>
+                            <!-- Image fills the entire card -->
+                            <ImageView
+                                android:id="@+id/iv_r_naranja"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/naranja_navel" />
+
+                            <!-- Text overlay on the image -->
+                            <TextView
+                                android:id="@+id/tv_r_naranja"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:alpha="0.7"
+                                android:background="@android:color/darker_gray"
+                                android:padding="8dp"
+                                android:text="Judia Verde"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
             </LinearLayout>
+            </HorizontalScrollView>
+
         </LinearLayout>
     </RelativeLayout>
 

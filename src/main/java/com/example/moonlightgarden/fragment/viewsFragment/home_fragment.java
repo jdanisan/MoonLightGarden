@@ -33,15 +33,15 @@ public class home_fragment extends Fragment {
         // Configure ViewFlipper
         viewFlipper = rootView.findViewById(R.id.v_flipper);
         String[] imageUrls = {
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio2.jpeg",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio_elefantito.jpeg",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio_fresas.png",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio3.jpg",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio4.jpg",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio_lechuga_r.png",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio5.png",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncio_naranja.png",
-                "https://github.com/jdanisan/MoonLightGarden/blob/imagenes/anuncion1.jpg"
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio2.jpeg",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio3.jpg",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio4.jpg",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio5.png",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio_elefantito.jpeg",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio_fresas.png",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio_lechuga_r.png",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio_naranja.png",
+                "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncion1.jpg"
         };
 
         for (String url : imageUrls) {
