@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,10 +45,10 @@ public class statistics_fragment extends Fragment {
 
     private LineChart lineChart;
     private RequestQueue requestQueue;
-    private EditText etProducto;
     private Button btnBuscar;
     private LinearLayout scrollContent;
     private TextView tvMediaValor;
+    private Spinner spinnerProducto;
 
     private DatabaseReference databaseRef;
 
@@ -66,7 +67,7 @@ public class statistics_fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        etProducto = view.findViewById(R.id.etProducto);
+        spinnerProducto = view.findViewById(R.id.spinnerProducto);
         btnBuscar = view.findViewById(R.id.btnBuscar);
         lineChart = view.findViewById(R.id.lineChart);
         scrollContent = view.findViewById(R.id.scroll_content);
@@ -74,13 +75,23 @@ public class statistics_fragment extends Fragment {
         requestQueue = Volley.newRequestQueue(requireContext());
         databaseRef = FirebaseDatabase.getInstance().getReference("food");
 
+        // Lista de 15 productos
+        String[] productos = {"Patata", "Acelga", "Cebolla", "Zanahoria", "Lechuga_romana", "Manzana_golden", "Pera_agua", "Platano", "Judia_verde", "Limon", "Pimiento_verde", "Calabacin", "Tomate", "Clementina", "Naranja_navel"};
+
+        // Convertir todos los elementos del array a minúsculas
+        for (int i = 0; i < productos.length; i++) {
+            productos[i] = productos[i].toLowerCase();
+        }
+
+        // Configurar el Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, productos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProducto.setAdapter(adapter);
+
         btnBuscar.setOnClickListener(v -> {
-            String producto = etProducto.getText().toString().trim();
-            if (!producto.isEmpty()) {
-                productoFiltro = producto;
-                fetchDataAndPlot();
-                fetchProductCard(productoFiltro.toLowerCase());
-            }
+            productoFiltro = spinnerProducto.getSelectedItem().toString();
+            fetchDataAndPlot();
+            fetchProductCard(productoFiltro.toLowerCase());
         });
 
         // Inicial
