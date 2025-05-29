@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -11,6 +12,7 @@ import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.moonlightgarden.R;
 import com.squareup.picasso.Picasso;
@@ -30,6 +32,7 @@ public class home_fragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.home_layout, container, false);
 
+
         // Configure ViewFlipper
         viewFlipper = rootView.findViewById(R.id.v_flipper);
         String[] imageUrls = {
@@ -43,7 +46,7 @@ public class home_fragment extends Fragment {
                 "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncio_naranja.png",
                 "https://raw.githubusercontent.com/jdanisan/ImgBannerTFG/master/anuncion1.jpg"
         };
-        //Se ha agregado el raw delante de las redirecciones para poder acceder a las imágenes desde el repositorio de GitHub.
+        //Se ha agregado el raw delante de las redirecciones para poder añadir las imágenes desde el repositorio de GitHub
 
         for (String url : imageUrls) {
             ImageView imageView = new ImageView(getContext());
@@ -55,16 +58,8 @@ public class home_fragment extends Fragment {
         viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping();
 
-        // Configure CardView for btn2_pp
-        /*CardView btn2 = rootView.findViewById(R.id.);
-        ImageView imageView = btn2.findViewById(R.id.iv_tomate);
-        TextView nameTextView = btn2.findViewById(R.id.tv_tomate);
-        TextView descriptionTextView = btn2.findViewById(R.id.tv_tomate_description);
 
-        // Set dynamic content for btn2
-        imageView.setImageResource(R.drawable.acelga);
-        nameTextView.setText("Acelga");
-        descriptionTextView.setText("Descripción de la acelga");*/
+
 
         return rootView;
     }

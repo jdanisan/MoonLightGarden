@@ -1,12 +1,11 @@
 package com.example.moonlightgarden.fragment.viewsFragment;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +14,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.moonlightgarden.API.WeatherApiService;
 import com.example.moonlightgarden.R;
+import com.example.moonlightgarden.models.foodItem;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,19 +29,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class Calendar_moon extends Fragment {
 
     private TextView moonPhaseText;
     private ImageView imageViewMoonPhase;
-    private TextView selectDateText;
-    private Calendar selectedDate;
-
-    public Calendar_moon() {
-        // Constructor vacío
-    }
+    private LinearLayout scrollContent;
+    private DatabaseReference databaseRef;
 
     @Nullable
     @Override
@@ -46,50 +46,17 @@ public class Calendar_moon extends Fragment {
         View view = inflater.inflate(R.layout.calendar_moon, container, false);
         moonPhaseText = view.findViewById(R.id.moonPhaseText);
         imageViewMoonPhase = view.findViewById(R.id.imageViewMoonPhase);
-        selectDateText = view.findViewById(R.id.selectDateText);
+        scrollContent = view.findViewById(R.id.scroll_content);
 
-        // Inicializar la fecha seleccionada con la fecha actual
-        selectedDate = Calendar.getInstance();
-        updateSelectedDateText();
+        databaseRef = FirebaseDatabase.getInstance().getReference("food");
 
-        // Configurar el clic en el texto para seleccionar una fecha
-        selectDateText.setOnClickListener(v -> showDatePickerDialog());
-
-        // Obtener la fase lunar para la fecha actual
         fetchMoonPhase();
 
         return view;
     }
 
     /**
-     * Muestra un DatePickerDialog para seleccionar una fecha.
-     */
-    private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(),
-                (DatePicker view, int year, int month, int dayOfMonth) -> {
-                    // Actualizar la fecha seleccionada
-                    selectedDate.set(year, month, dayOfMonth);
-                    updateSelectedDateText();
-                    fetchMoonPhase(); // Actualizar la fase lunar para la nueva fecha
-                },
-                selectedDate.get(Calendar.YEAR),
-                selectedDate.get(Calendar.MONTH),
-                selectedDate.get(Calendar.DAY_OF_MONTH)
-        );
-        datePickerDialog.show();
-    }
-
-    /**
-     * Actualiza el texto que muestra la fecha seleccionada.
-     */
-    private void updateSelectedDateText() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        selectDateText.setText("Fecha seleccionada: " + dateFormat.format(selectedDate.getTime()));
-    }
-
-    /**
-     * Obtiene la fase lunar para la fecha seleccionada.
+     * Fetches the moon phase from the API and updates the UI.
      */
     private void fetchMoonPhase() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -101,7 +68,7 @@ public class Calendar_moon extends Fragment {
 
         String apiKey = "6fb0876a5d8144f6b30100754252205";
         String location = "España";
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.getTime());
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
 
         Call<AstronomyResponse> call = service.getAstronomy(apiKey, location, date);
 
@@ -112,6 +79,7 @@ public class Calendar_moon extends Fragment {
                     String moonPhase = response.body().astronomy.astro.moon_phase;
                     moonPhaseText.setText("Fase Lunar: " + moonPhase);
                     setMoonImage(moonPhase);
+                    populateFoodCards(moonPhase.toLowerCase());
                 } else {
                     moonPhaseText.setText("Error obteniendo datos");
                 }
@@ -120,15 +88,94 @@ public class Calendar_moon extends Fragment {
             @Override
             public void onFailure(@NonNull Call<AstronomyResponse> call, @NonNull Throwable t) {
                 moonPhaseText.setText("Fallo de conexión");
-                imageViewMoonPhase.setImageResource(R.drawable.ic_moon); // Imagen por defecto
+                imageViewMoonPhase.setImageResource(R.drawable.ic_moon); // Default image
             }
         });
     }
 
     /**
-     * Actualiza la imagen de la fase lunar según la fase.
+     * Populates the LinearLayout with food cards based on the moon phase.
      *
-     * @param phase Fase lunar.
+     * @param moonPhase The current moon phase.
+     */
+    private void populateFoodCards(String moonPhase) {
+        scrollContent.removeAllViews(); // Clear existing views
+
+        databaseRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    foodItem item = data.getValue(foodItem.class);
+                    if (item == null) continue;
+
+                    String description = item.getFood_description().toLowerCase();
+                    if (matchesMoonPhase(description, moonPhase)) {
+                        View cardView = LayoutInflater.from(getContext())
+                                .inflate(R.layout.food_card_item, scrollContent, false);
+
+                        TextView name = cardView.findViewById(R.id.product_name);
+                        TextView desc = cardView.findViewById(R.id.product_description);
+                        ImageView image = cardView.findViewById(R.id.product_image);
+
+                        name.setText(item.getFood_name());
+                        desc.setText(item.getFood_description());
+                        Picasso.get().load(item.getfood_image_url()).into(image);
+
+                        // Add OnClickListener to expand/collapse description
+                        cardView.setOnClickListener(v -> {
+                            if (desc.getMaxLines() == 1) {
+                                desc.setMaxLines(Integer.MAX_VALUE); // Expand description
+                            } else {
+                                desc.setMaxLines(1); // Collapse description
+                            }
+                        });
+
+                        scrollContent.addView(cardView);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle errors
+            }
+        });
+    }
+
+    /**
+     * Checks if the description matches the moon phase.
+     *
+     * @param description The description of the food item.
+     * @param moonPhase The current moon phase.
+     * @return True if the description matches the moon phase, false otherwise.
+     */
+    private boolean matchesMoonPhase(String description, String moonPhase) {
+        switch (moonPhase) {
+            case "new moon":
+                return description.contains("luna nueva");
+            case "waxing crescent":
+                return description.contains("luna creciente");
+            case "first quarter":
+                return description.contains("primer cuarto");
+            case "waxing gibbous":
+                return description.contains("luna gibosa creciente");
+            case "full moon":
+                return description.contains("luna llena");
+            case "waning gibbous":
+                return description.contains("luna gibosa menguante");
+            case "last quarter":
+                return description.contains("cuarto menguante");
+            case "waning crescent":
+                return description.contains("luna menguante");
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Updates the moon phase image based on the phase.
+     *
+     * @param phase The moon phase.
      */
     private void setMoonImage(String phase) {
         int resId;
@@ -158,7 +205,7 @@ public class Calendar_moon extends Fragment {
                 resId = R.drawable.crecient_moon;
                 break;
             default:
-                resId = R.drawable.ic_moon; // Imagen por defecto
+                resId = R.drawable.ic_moon; // Default image
                 break;
         }
 

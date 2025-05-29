@@ -6,7 +6,7 @@ public class foodItem { // Buena práctica usar mayúscula al inicio para nombre
     // Estos nombres de campo deben coincidir con las claves en tu JSON
     // O deben tener getters con nombres que sigan la convención Java Bean (getNombreCampo)
     public String food_name;
-    public String url_food_image;
+    public String food_image_url;
     public String food_description;
     public double food_price; // Añadimos el campo para el precio
 
@@ -15,9 +15,9 @@ public class foodItem { // Buena práctica usar mayúscula al inicio para nombre
     public foodItem() {}
 
     // Constructor con argumentos (útil para crear objetos en tu código, no estrictamente necesario para Firebase)
-    public foodItem(String food_name, String url_food_image, String food_description, double food_price) {
+    public foodItem(String food_name, String food_image_url, String food_description, double food_price) {
         this.food_name = food_name;
-        this.url_food_image = url_food_image;
+        this.food_image_url = food_image_url;
         this.food_description = food_description;
         this.food_price = food_price;
     }
@@ -26,7 +26,7 @@ public class foodItem { // Buena práctica usar mayúscula al inicio para nombre
     // o si quieres usar nombres de getter diferentes a los del campo (no recomendado si buscas simplicidad)
     // Si los campos son públicos, los getters son opcionales para la deserialización básica.
     public String getFood_name() { return food_name; }
-    public String getUrl_food_image() { return url_food_image; }
+    public String getfood_image_url() { return food_image_url; }
     public String getFood_description() { return food_description; }
     public double getFood_price() { return food_price; }
 
