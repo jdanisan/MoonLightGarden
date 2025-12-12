@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/topicTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título del tema"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/topicDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripción del tema"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"/>
+</LinearLayout>

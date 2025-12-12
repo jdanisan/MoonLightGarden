@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Título del tema -->
+        <TextView
+            android:id="@+id/tvTopicTitle"
+            android:text="Título del tema"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Lista de hilos -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerThreads"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp" />
+        <!-- Sección de opiniones -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerOpiniones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:padding="8dp" />
+
+        <!-- Input para opinión -->
+        <EditText
+            android:id="@+id/etOpinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Escribe tu opinión..."
+            android:padding="8dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Botón para enviar -->
+        <Button
+            android:id="@+id/btnEnviarOpinion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar opinión"
+            android:layout_marginTop="8dp"/>
+
+
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

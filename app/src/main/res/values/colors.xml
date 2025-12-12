@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bottom_nv_menu_selected">#FF6200EE</color>
     <color name="bottom_nv_menu_default">#FF888888</color>
+    <color name="gray">#88181717</color>
 
 </resources>

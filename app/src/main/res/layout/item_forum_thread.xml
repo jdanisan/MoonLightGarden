@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- Título del hilo -->
+    <TextView
+        android:id="@+id/tvThreadTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título del hilo"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="4dp"/>
+
+    <!-- Autor del hilo -->
+    <TextView
+        android:id="@+id/tvThreadAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="By: Autor"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"/>
+</LinearLayout>
