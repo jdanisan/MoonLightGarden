@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,7 +68,7 @@ public class statistics_fragment extends Fragment {
     // Producto seleccionado por defecto
     private String productoFiltro = "patata";
     // URL de la API externa
-    private static final String API_URL = "https://api-precios-productos.onrender.com/api/precios";
+    private static final String API_URL = "https://api-tfg-c9vc.onrender.com/obtener-datos";
 
     public statistics_fragment() {}
 
@@ -93,7 +94,7 @@ public class statistics_fragment extends Fragment {
         databaseRef = FirebaseDatabase.getInstance().getReference("food");
 
         // Lista de productos disponibles
-        String[] productos = {"Patata", "Acelga", "Cebolla", "Zanahoria", "Lechuga_romana", "Manzana_golden", "Pera_agua", "Platano", "Judia_verde", "Limon", "Pimiento_verde", "Calabacin", "Tomate", "Clementina", "Naranja_navel"};
+        String[] productos = {"Patata", "Acelga", "Cebolla", "Zanahoria", "Lechuga", "Manzana", "Pera", "Platano", "Judia", "Limon", "Pimiento", "Calabacin", "Tomate", "Clementina", "naranja_navel"};
         for (int i = 0; i < productos.length; i++) {
             productos[i] = productos[i].toLowerCase();
         }
@@ -101,6 +102,8 @@ public class statistics_fragment extends Fragment {
         // Botón para abrir/cerrar el foro
         ImageView btnForo = view.findViewById(R.id.btn_forum);
         FrameLayout statContainer = view.findViewById(R.id.stat_container);
+
+
 
         btnForo.setOnClickListener(v -> {
             if (!foroVisible) {
@@ -115,6 +118,7 @@ public class statistics_fragment extends Fragment {
                 foroVisible = false;
             }
         });
+
 
         // Configuramos el spinner con los productos
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, productos);
@@ -141,7 +145,8 @@ public class statistics_fragment extends Fragment {
     }
 
     // Petición a la API externa
-    private void fetchDataAndPlot() {
+    private void fetchDataAndPlot()
+    {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 API_URL,
@@ -171,53 +176,41 @@ public class statistics_fragment extends Fragment {
         ArrayList<Entry> entriesPrecioM = new ArrayList<>();
         ArrayList<String> semanasLabels = new ArrayList<>();
 
-        float sumaTotal = 0f;
-        int contador = 0;
-
+        float sumaTotal = 0;
         try {
+            int maxEntries = 5; // Limit to 5 entries
+
+
+            // Iterate over the JSON array
             for (int i = 0; i < dataArray.length(); i++) {
-                JSONObject obj = dataArray.getJSONObject(i);
-                String producto = obj.getString("Producto");
-                if (!producto.equalsIgnoreCase(productoFiltro)) continue;
+                JSONObject obj = dataArray.getJSONObject(i);  // Get each JSONObject
 
                 JSONArray preciosArray = obj.getJSONArray("Precios");
                 JSONArray semanasArray = obj.getJSONArray("Semanas");
 
-                int totalSemanas = semanasArray.length();
-                int startIndex = Math.max(0, totalSemanas - 5);
+                // Loop over up to 5 weeks
+                for (int j = 0; j < Math.min(maxEntries, semanasArray.length()); j++) {
+                    // Get the corresponding prices (Precio P and Precio M)
+                    float precioP = (float) preciosArray.getDouble(j * 2);  // "Precio P" (even index)
+                    float precioM = (float) preciosArray.getDouble(j * 2 + 1);  // "Precio M" (odd index)
+                    sumaTotal += precioM +precioP;
+                    // Add the entries to the respective lists
+                    entriesPrecioP.add(new Entry(j, precioP));
+                    entriesPrecioM.add(new Entry(j, precioM));
 
-                for (int j = 0; j < 5; j++) {
-                    int semanaIndex = startIndex + j;
-                    if (semanaIndex >= totalSemanas) break;
-
-                    semanasLabels.add(semanasArray.getString(semanaIndex));
-
-                    int precioPIndex = semanaIndex * 2;
-                    int precioMIndex = precioPIndex + 1;
-
-                    float precio_p = precioPIndex < preciosArray.length() ? (float) preciosArray.getDouble(precioPIndex) : 0f;
-                    float precio_m = precioMIndex < preciosArray.length() ? (float) preciosArray.getDouble(precioMIndex) : 0f;
-
-                    entriesPrecioP.add(new Entry(j, precio_p));
-                    entriesPrecioM.add(new Entry(j, precio_m));
-
-                    sumaTotal += precio_p + precio_m;
-                    contador += 2;
+                    // Add the week label to the semanasLabels list
+                    semanasLabels.add(semanasArray.getString(j));
                 }
-                // Una vez encontrado el producto, salimos del bucle
+                // Exit after processing the first product (if you are only interested in the first one)
                 break;
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            e.printStackTrace();  // Handle JSON parsing error
         }
 
-        // Calcular y mostrar la media
-        if (contador > 0) {
-            float media = sumaTotal / contador;
-            tvMediaValor.setText(String.format("$%.2f", media));
-        } else {
-            tvMediaValor.setText("No disponible");
-        }
+    // Calcular y mostrar la media
+        float media = sumaTotal / 10;
+        tvMediaValor.setText(String.format("$%.2f", media));
 
         // Configurar datasets para el gráfico
         LineDataSet dataSetP = new LineDataSet(entriesPrecioP, "Precio P");

@@ -97,21 +97,21 @@ public class MainActivity extends AppCompatActivity {
             .commit();
     }
 
-    public void toggleTheme(View view) {
-        ImageView themeToggle = view.findViewById(R.id.themeToggle);
-
-        // Alternar modo oscuro / claro
-        int nightMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-                ? AppCompatDelegate.MODE_NIGHT_NO
-                : AppCompatDelegate.MODE_NIGHT_YES;
-
-        AppCompatDelegate.setDefaultNightMode(nightMode);
-
-
-
-        // Guardar preferencia
-        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        prefs.edit().putInt("themeMode", nightMode).apply();
-    }
+//    public void toggleTheme(View view) {
+//        ImageView themeToggle = view.findViewById(R.id.themeToggle);
+//
+//        // Alternar modo oscuro / claro
+//        int nightMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+//                ? AppCompatDelegate.MODE_NIGHT_NO
+//                : AppCompatDelegate.MODE_NIGHT_YES;
+//
+//        AppCompatDelegate.setDefaultNightMode(nightMode);
+//
+//
+//
+//        // Guardar preferencia
+//        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+//        prefs.edit().putInt("themeMode", nightMode).apply();
+//    }
 
 }

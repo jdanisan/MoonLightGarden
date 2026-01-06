@@ -166,7 +166,7 @@
         </LinearLayout>
 
         <!-- Estilo + icono -->
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -184,13 +184,12 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_moon"
-                android:clickable="true"
                 android:focusable="true"
                 android:onClick="toggleTheme"
                 android:contentDescription="@string/toggle_theme"/>
 
 
-        </LinearLayout>
+        </LinearLayout>-->
 
         <!-- Botones -->
         <Button
